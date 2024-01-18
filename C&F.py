@@ -68,6 +68,7 @@ plt.ylabel('Values of Inertia')
 plt.legend()
 plt.show()
 
+
 #Fitting the data into KMeans Algorithm
 kmeans = KMeans(n_clusters=3).fit(data_normalized[['1970','2010']])
 clusters = df.copy(deep=True)
@@ -100,3 +101,9 @@ plt.ylabel('Y_Range')
 plt.legend()
 plt.grid()
 plt.show()
+
+##curve fitting##
+
+#Importing curve fit from scipy and error ranges for confidence ranges
+from scipy.optimize import curve_fit
+import err_ranges as err
