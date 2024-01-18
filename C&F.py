@@ -48,3 +48,8 @@ from sklearn.preprocessing import LabelEncoder
 label_encode = LabelEncoder()
 df['Country Code'] = label_encode.fit_transform(df['Country Code'])
 df['Indicator Code'] = label_encode.fit_transform(df['Indicator Code'])
+
+#Normalizing the data values by mean and std deviation 
+data_rank = df.rank(method='first')
+data_normalized = (data_rank - data_rank.mean())/data_rank.std()
+data_normalized.head(10)
