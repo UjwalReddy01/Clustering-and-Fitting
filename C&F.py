@@ -151,3 +151,6 @@ plt.show()
 
 year = np.arange(1970,2010)
 CO2_emissions_from_solid_fuel_consumption = logistic_1(year, *param)
+
+#Defining upper and lower limits of confidence ranges using error ranges package
+l , u = err.err_ranges(year,logistic_1,param,sigma)
