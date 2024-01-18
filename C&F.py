@@ -154,3 +154,15 @@ CO2_emissions_from_solid_fuel_consumption = logistic_1(year, *param)
 
 #Defining upper and lower limits of confidence ranges using error ranges package
 l , u = err.err_ranges(year,logistic_1,param,sigma)
+
+#Plotting the graph showing best fitting function and graph
+plt.figure()
+plt.plot(curve_f["Year"], curve_f["Population,total"], label="Population,total")
+plt.plot(year, CO2_emissions_from_solid_fuel_consumption, label="CO2 emissions from solid fuel consumption")
+plt.fill_between(year, l, u, color="yellow", alpha=0.7)
+plt.xlabel("year")
+plt.ylabel("Population,total")
+plt.legend()
+plt.show()
+
+print('\n',err.err_ranges(2030, logistic_1, param, sigma))
