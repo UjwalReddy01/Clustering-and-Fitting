@@ -73,3 +73,30 @@ kmeans = KMeans(n_clusters=3).fit(data_normalized[['1970','2010']])
 clusters = df.copy(deep=True)
 clusters['Clusters'] = kmeans.labels_
 clusters.head(10)
+
+#Defining centers of the clusters 
+kmeans_c = KMeans(n_clusters=3).fit(df[['1970','2010']])
+
+#Plotting Three Different clusters with defined centers using scatter plot
+plt.scatter(
+clusters.loc[clusters['Clusters']==0]['1970'],
+clusters.loc[clusters['Clusters']==0]['2010'],
+c='r')
+plt.scatter(
+clusters.loc[clusters['Clusters']==1]['1970'],
+clusters.loc[clusters['Clusters']==1]['2010'],
+c='g')
+plt.scatter(
+clusters.loc[clusters['Clusters']==2]['1970'],
+clusters.loc[clusters['Clusters']==2]['2010'],
+c='b')
+
+#Plotting the centers of the clusters using scatter plot
+cen = kmeans_c.cluster_centers_
+plt.scatter(cen[:,0],cen[:,1],c='black',s=200,alpha=0.5);
+plt.title('Clusters')
+plt.xlabel('X_Range')
+plt.ylabel('Y_Range')
+plt.legend()
+plt.grid()
+plt.show()
