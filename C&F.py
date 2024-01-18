@@ -67,3 +67,9 @@ plt.xlabel('Cluster values')
 plt.ylabel('Values of Inertia')
 plt.legend()
 plt.show()
+
+#Fitting the data into KMeans Algorithm
+kmeans = KMeans(n_clusters=3).fit(data_normalized[['1970','2010']])
+clusters = df.copy(deep=True)
+clusters['Clusters'] = kmeans.labels_
+clusters.head(10)
