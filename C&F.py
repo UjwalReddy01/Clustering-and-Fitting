@@ -53,3 +53,17 @@ df['Indicator Code'] = label_encode.fit_transform(df['Indicator Code'])
 data_rank = df.rank(method='first')
 data_normalized = (data_rank - data_rank.mean())/data_rank.std()
 data_normalized.head(10)
+
+#Forming clusters using K -means clustering algorithm by elbow method
+from sklearn.cluster import KMeans
+sum_of_squares = []
+for i in range(1,11):
+    k_means = KMeans(n_clusters = i,init = 'k-means++',random_state=42)
+    k_means.fit(df[['1970','2010']])
+    sum_of_squares.append(k_means.inertia_)
+plt.plot(range(1,11),sum_of_squares)
+plt.title('Knee of a curve')
+plt.xlabel('Cluster values')
+plt.ylabel('Values of Inertia')
+plt.legend()
+plt.show()
