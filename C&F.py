@@ -110,3 +110,7 @@ import err_ranges as err
 
 #Creating Dataframe with respect to years for 5 different countries 
 df_co,df_yr=readcsv('API_19_DS2_en_csv_v2_4700503-Copy.csv',['Belgium','Bulgaria','Colombia','Finland','United Kingdom'])
+
+#Defining curve fit of time series for indicator-Population
+curve = df_yr.iloc[4:,155]
+print(curve)
