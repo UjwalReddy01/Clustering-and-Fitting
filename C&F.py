@@ -38,3 +38,13 @@ features = ['CO2 emissions from liquid fuel consumption (% of total)','Urban pop
 #Creating a new dataframe with few indicator names
 df = df_co.loc[df_co['Indicator Name'].isin(features)]
 print(df)
+
+#Using Drop function to drop column names - Country name & Indicator name
+df= df.drop(columns=['Country Name','Indicator Name'],axis=1)
+print(df)
+
+#Importing Label Encoder from sklearn as a part of data preprocessing step to replace categorical values to numerical values
+from sklearn.preprocessing import LabelEncoder
+label_encode = LabelEncoder()
+df['Country Code'] = label_encode.fit_transform(df['Country Code'])
+df['Indicator Code'] = label_encode.fit_transform(df['Indicator Code'])
