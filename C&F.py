@@ -107,3 +107,6 @@ plt.show()
 #Importing curve fit from scipy and error ranges for confidence ranges
 from scipy.optimize import curve_fit
 import err_ranges as err
+
+#Creating Dataframe with respect to years for 5 different countries 
+df_co,df_yr=readcsv('API_19_DS2_en_csv_v2_4700503-Copy.csv',['Belgium','Bulgaria','Colombia','Finland','United Kingdom'])
