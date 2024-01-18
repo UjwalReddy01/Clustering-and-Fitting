@@ -135,3 +135,19 @@ param, covar = curve_fit(exponential, curve_f["Year"], curve_f["Population,total
 curve_f['fit'] = exponential(curve_f['Year'], *param)
 curve_f.plot('Year',['Population,total','fit'])
 plt.show()
+
+#Defining Logistic function and plotting the fit 
+def logistic_1(t, n0, g, t0):
+    f = n0 / (1 + np.exp(-g*(t - t0)))
+    return f
+param , covar = curve_fit(logistic_1,curve_f['Year'],curve_f['Population,total'],p0 = (3e12,0.03,2000.0))
+
+sigma = np.sqrt(np.diag(covar))
+print("parameters:", param)
+print("std. dev.", sigma)
+curve_f["fit"] = logistic_1(curve_f["Year"], *param)
+curve_f.plot("Year", ["Population,total", "fit"])
+plt.show()
+
+year = np.arange(1970,2010)
+CO2_emissions_from_solid_fuel_consumption = logistic_1(year, *param)
