@@ -114,3 +114,24 @@ df_co,df_yr=readcsv('API_19_DS2_en_csv_v2_4700503-Copy.csv',['Belgium','Bulgaria
 #Defining curve fit of time series for indicator-Population
 curve = df_yr.iloc[4:,155]
 print(curve)
+
+#Defining dataframe and resetting index for Population against years
+curve_f = curve.to_frame()
+curve_f = curve_f.reset_index()
+curve_f.columns = ['Year','Population,total']
+print(curve_f)
+
+#Plotting the graph of Population against Years
+curve_f.plot('Year','Population,total')
+
+#Defining Exponential function and plotting the fit
+def exponential(t,n0,g):
+    t = t-1960.0
+    f = n0*np.exp(g*t)
+    return f
+curve_f['Year'] = pd.to_numeric(curve_f['Year'])
+param, covar = curve_fit(exponential, curve_f["Year"], curve_f["Population,total"],p0=(73233967692.102798, 0.03))
+
+curve_f['fit'] = exponential(curve_f['Year'], *param)
+curve_f.plot('Year',['Population,total','fit'])
+plt.show()
